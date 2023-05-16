@@ -4,10 +4,10 @@
 class transaction;
     rand bit [31:0] a;
     rand bit [31:0] b;
-    logic [1:0] opcode = 0;
+    logic [1:0] opcode;
     bit [31:0] c;
 
-    opcode=00;
+    opcode=0;
 
 
     function void display(string name)

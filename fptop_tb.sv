@@ -53,6 +53,7 @@ class driver;
             vif.a = trans.a;
             vif.b = trans.b;
             vif.opcode=trans.opcode;
+            #100;
             trans.display("Driver Block");
         end
     endtask

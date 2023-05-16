@@ -162,7 +162,7 @@ module top_tb;
     test t1(i_intf);
 
     //top_dut dut(.a(i_intf.a),.b(i_intf.b),.clk(clk),.start(start),.opcode(i_intf.opcode),.c(i_intf.c));
-    top_dut dut(intf.slave);
+    top_dut dut(i_intf.slave);
 
     initial begin
         $vcdpluson;

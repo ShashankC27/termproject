@@ -128,10 +128,12 @@ class environment;
     endfunction
 
     task test();
+        fork
         gen.main();
         driv.main();
         mon.main();
         scb.main();
+        join
     endtask
 
     task run;

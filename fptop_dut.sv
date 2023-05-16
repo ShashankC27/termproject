@@ -46,8 +46,8 @@ module fptop_dut(
            // $display("in the loop %d",opcode);
             case (opcode)
                 Add: begin
-                   $display("Value for add is a_sign =%b b_sign =%b  and output is %b",a_sig,b_sig,c_adder);
-                    c <= c_adder;
+                   $display("Value for add is a_sign =%d b_sign =%d  and output is %d",a_sig,b_sig,c_adder);
+                    c = c_adder;
                 end
                 Mul: begin
                     //$display("Value for Mul is a_sign =%b b_sign =%b  and output is %b",a_sig,b_sig,c_multiplier);

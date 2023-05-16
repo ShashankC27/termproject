@@ -108,7 +108,7 @@ endclass
 
 class environment;
     generator gen;
-    driver drv;
+    driver driv;
     monitor mon;
     scoreboard scb;
 
@@ -150,11 +150,19 @@ program test(fp_inf i_intf);
 endprogram
 
 module top_tb;
-    fp_inf i_intf();
+
+    logic clk;
+    logic start;
+
+    start=1;
+    clk =0;
+    always #5 clk = ~clk;
+    
+    fp_inf i_intf(clk);
     
     test t1(i_intf);
 
-    top_dut dut(.a(i_intf.a),.b(i_intf.b),.opcode(i_intf.opcode),.c(i_intf.c));
+    top_dut dut(.a(i_intf.a),.b(i_intf.b),.clk(i_intf.clk),.start(start),.opcode(i_intf.opcode),.c(i_intf.c));
 
     initial begin
         $vcdpluson;

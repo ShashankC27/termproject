@@ -9,8 +9,7 @@ class transaction;
 
     //opcode = 2'b00;
 
-    
-    
+
     function void display(string name);
         $display("------------------------");
         $display(" %s and values of a and b are %d %d",name,a,b);
@@ -34,9 +33,7 @@ class generator;
             trans.opcode=2'b00;
             trans.display("Generator Block");
             gen_driv.put(trans);
-
-           
-            end
+        end
     endtask
 endclass
 
@@ -49,10 +46,6 @@ class driver;
         this.gen_driv=gen_driv;
     endfunction
 
-
-    real ar;
-    real br;
-    
     task main();
         repeat(1) begin
             transaction trans;
@@ -60,9 +53,6 @@ class driver;
             vif.a = trans.a;
             vif.b = trans.b;
             vif.opcode=trans.opcode;
-            vif.conv_fixed(trans.a,ar);
-            vif.conv_fixed(trans.b,br);
-            $display("values of a and b are %f %f",ar,br);
             #100;
             trans.display("Driver Block");
         end
@@ -98,13 +88,20 @@ class scoreboard;
     function new(mailbox mon_sb);
         this.mon_sb =mon_sb;
     endfunction
+    
+    real ar,br,cr;
+    fp_inf i_intf;
 
     task main();
         transaction trans;
         repeat(1) begin
             mon_sb.get(trans);
             trans.display("scoreboard");
-            if((trans.a + trans.b) == trans.c) begin
+            i_intf.conv_fixed(trans.a,ar);
+            i_intf.conv_fixed(trans.b,br);
+            i_intf.conv_fixed(trans.c,cr);
+
+            if((ar+br) == cr) begin
                 $display("**********************************");
                 $display("Correct output have been received.");
                 $display(" a = %d, b = %d and c = %c",trans.a,trans.b,trans.c);

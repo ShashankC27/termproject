@@ -97,7 +97,7 @@ class scoreboard;
         repeat(1) begin
             mon_sb.get(trans);
             trans.display("scoreboard");
-            i_intf.conv_fixed(trans.a,ar);
+            i_intf.conv_fixed(.fixed(trans.a),.num(ar));
             i_intf.conv_fixed(trans.b,br);
             i_intf.conv_fixed(trans.c,cr);
 

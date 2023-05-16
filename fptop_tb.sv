@@ -151,10 +151,10 @@ endprogram
 
 module top_tb;
 
-    logic clk;
+    bit clk=0;
     bit start=1;
 
-    clk =0;
+    
     always #5 clk = ~clk;
     
     fp_inf i_intf(clk);

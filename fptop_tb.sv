@@ -28,7 +28,7 @@ class generator;
     endfunction
 
     virtual fp_inf vif;
-    
+
     real ar;
     real br;
     task main();
@@ -41,7 +41,7 @@ class generator;
 
             vif.conv_fixed(a,ar);
             vif.conv_fixed(a,ar);
-            $display("values of a and b are %f %f"ar,br);
+            $display("values of a and b are %f %f",ar,br);
             end
     endtask
 endclass

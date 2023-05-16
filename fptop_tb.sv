@@ -93,6 +93,7 @@ class scoreboard;
         transaction trans;
         repeat(1) begin
             mon_sb.get(trans);
+            trans.display(scoreboard);
             if((trans.a + trans.b) == trans.c) begin
                 $display("**********************************");
                 $display("Correct output have been received.");
@@ -132,6 +133,7 @@ class environment;
         fork
         gen.main();
         driv.main();
+        #50;
         mon.main();
         scb.main();
         join

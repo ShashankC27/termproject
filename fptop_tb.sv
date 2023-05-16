@@ -27,6 +27,8 @@ class generator;
         this.gen_driv =gen_driv;
     endfunction
 
+    real ar;
+    real br;
     task main();
         repeat (1) begin
             trans = new();
@@ -35,8 +37,7 @@ class generator;
             trans.display("Generator Block");
             gen_driv.put(trans);
 
-            real ar;
-            real br;
+            
 
             virtual fp_inf vif;
 

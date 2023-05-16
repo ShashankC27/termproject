@@ -7,7 +7,7 @@ class transaction;
     logic [1:0] opcode;
     bit [31:0] c;
 
-    opcode = 2'd0;
+    opcode = 2'b00;
 
 
     function void display(string name);

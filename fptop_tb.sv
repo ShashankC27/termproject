@@ -4,7 +4,7 @@
 class transaction;
     rand bit [31:0] a;
     rand bit [31:0] b;
-    logic bit [1:0] opcode = 00;
+    logic [1:0] opcode = 00;
     bit [31:0] c;
 
     opcode=00;

@@ -7,7 +7,7 @@ class transaction;
     reg [1:0] opcode;
     bit [31:0] c;
 
-    opcode = 2'b00;
+    //opcode = 2'b00;
 
 
     function void display(string name);
@@ -30,6 +30,7 @@ class generator;
         repeat (1) begin
             trans = new();
             trans.randomize();
+            trans.opcode=2'b00;
             trans.display("Generator Block");
             gen_driv.put(trans);
         end

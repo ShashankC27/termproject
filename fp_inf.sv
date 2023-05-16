@@ -6,6 +6,6 @@ interface fp_inf(input bit clk);
     logic [31:0] c;
     logic start=1;
 
-    modport slave (output a, b, opcode, start input c );
+    modport slave (output a, b, opcode, start, input c );
 
 endinterface

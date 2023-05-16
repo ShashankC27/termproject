@@ -39,8 +39,8 @@ class generator;
             trans.display("Generator Block");
             gen_driv.put(trans);
 
-            vif.conv_fixed(a,ar);
-            vif.conv_fixed(a,ar);
+            vif.conv_fixed(trans.a,ar);
+            vif.conv_fixed(trans.b,br);
             $display("values of a and b are %f %f",ar,br);
             end
     endtask

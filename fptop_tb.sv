@@ -122,8 +122,8 @@ class environment;
         m1 = new();
         m2 = new();
         gen = new(m1);
-        driv = new(vif.m1);
-        mon = new(vif.m2);
+        driv = new(vif,m1);
+        mon = new(vif,m2);
         scb = new(m2);
     endfunction
 

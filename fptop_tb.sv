@@ -104,7 +104,8 @@ class scoreboard;
             if((ar+br) == cr) begin
                 $display("**********************************");
                 $display("Correct output have been received.");
-                $display(" a = %d, b = %d and c = %c",trans.a,trans.b,trans.c);
+                $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
+                $display(" a = %f, b = %f and c = %f",ar,br,cr);
             end
             else begin
                 $display("**********************************");
@@ -137,13 +138,13 @@ class environment;
     endfunction
 
     task test();
-        fork
+        //fork
         gen.main();
         driv.main();
         #50;
         mon.main();
         scb.main();
-        join
+        //join
     endtask
 
     task run;

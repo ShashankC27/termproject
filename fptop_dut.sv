@@ -41,7 +41,7 @@ module top_dut(
 
 
 	always @ (posedge clk) begin
-       // $display("in the loop %d",opcode);
+       $display("in the loop %d %d",a,b);
        #15;
         if (1) begin
            // $display("in the loop %d",opcode);

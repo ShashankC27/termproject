@@ -136,7 +136,7 @@ class environment;
 
     task run;
         test();
-        $finsih;
+        //$finsih;
     endtask
 endclass
 
@@ -166,6 +166,8 @@ module top_tb;
     initial begin
         $vcdpluson;
         $vcdplusmemon;
+        #10000;
+        $finish;
     end
 endmodule
 

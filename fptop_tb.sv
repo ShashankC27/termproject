@@ -27,10 +27,6 @@ class generator;
         this.gen_driv =gen_driv;
     endfunction
 
-    virtual fp_inf vif;
-
-    real ar;
-    real br;
     task main();
         repeat (1) begin
             trans = new();
@@ -39,9 +35,7 @@ class generator;
             trans.display("Generator Block");
             gen_driv.put(trans);
 
-            vif.conv_fixed(trans.a,ar);
-            vif.conv_fixed(trans.b,br);
-            $display("values of a and b are %f %f",ar,br);
+           
             end
     endtask
 endclass
@@ -55,6 +49,10 @@ class driver;
         this.gen_driv=gen_driv;
     endfunction
 
+
+    real ar;
+    real br;
+    
     task main();
         repeat(1) begin
             transaction trans;
@@ -62,6 +60,9 @@ class driver;
             vif.a = trans.a;
             vif.b = trans.b;
             vif.opcode=trans.opcode;
+            vif.conv_fixed(trans.a,ar);
+            vif.conv_fixed(trans.b,br);
+            $display("values of a and b are %f %f",ar,br);
             #100;
             trans.display("Driver Block");
         end

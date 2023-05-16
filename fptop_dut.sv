@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 `default_nettype none
 
-module top_dut(
+module fptop_dut(
     input [31:0] a,
     input [31:0] b,
     output reg [31:0] c,
@@ -42,7 +42,6 @@ module top_dut(
 
 	always @ (posedge clk) begin
        $display("in the loop %d %d",a,b);
-       #15;
         if (1) begin
            // $display("in the loop %d",opcode);
             case (opcode)

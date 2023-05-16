@@ -21,8 +21,8 @@ module top_dut(
 	//temporary Outputs
 	wire [31:0] result;
     wire [31:0] c_adder;
-    wire [31:0] c_multiplier;
-    wire [31:0] c_divider;
+    //wire [31:0] c_multiplier;
+    //wire [31:0] c_divider;
  
 	//qadd #(23, 32) adder(a, b, c_adder);
     //qmult #(23, 32) multiplier(a, b, c_multiplier);
@@ -35,8 +35,8 @@ module top_dut(
 
 
     qadd adder(.a(a_sig),.b(b_sig),.c(c_adder));
-    qmult multiplier(.a(a_sig),.b(b_sig),.c(c_multiplier));
-    qdiv divider(.dividend(a_sig),.divisor(b_sig),.start(start),.clk(clk),.quotient_out(c_divider),.complete(flag_done));
+    //qmult multiplier(.a(a_sig),.b(b_sig),.c(c_multiplier));
+    //qdiv divider(.dividend(a_sig),.divisor(b_sig),.start(start),.clk(clk),.quotient_out(c_divider),.complete(flag_done));
 	
 
 
@@ -52,10 +52,10 @@ module top_dut(
                 end
                 Mul: begin
                     //$display("Value for Mul is a_sign =%b b_sign =%b  and output is %b",a_sig,b_sig,c_multiplier);
-                    c <= c_multiplier;
+                    //c <= c_multiplier;
                 end
                 Div: begin
-                    c <= c_divider;
+                    //c <= c_divider;
                     //$display("Value for DIv is a_sign =%b b_sign =%b  and output is %b",a_sig,b_sig,c_divider);
                 end
             endcase

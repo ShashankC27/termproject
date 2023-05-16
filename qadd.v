@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns/1ps
 module qadd(
     input [31:0] a,
     input [31:0] b,

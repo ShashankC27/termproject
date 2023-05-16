@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns/1ps
 module qtwosComp(
     input [30:0] a,
     output [63:0] b

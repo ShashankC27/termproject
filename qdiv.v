@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns/1ps
 module qdiv(
 	input [31:0] dividend,
 	input [31:0] divisor,

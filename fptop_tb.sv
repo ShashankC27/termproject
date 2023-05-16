@@ -9,10 +9,18 @@ class transaction;
 
     //opcode = 2'b00;
 
+    real ar;
+    real br;
 
+    virtual fp_inf vif;
+
+    vif.conv_fixed(a,ar);
+    vif.conv_fixed(a,ar);
+    
     function void display(string name);
         $display("------------------------");
         $display(" %s and values of a and b are %d %d",name,a,b);
+        $display(" %s and values of a and b are %f %f",name,ar,br);
         $display("%d value of opcode %d value of c",opcode,c);
         $display("------------------------");
     endfunction

@@ -152,9 +152,8 @@ endprogram
 module top_tb;
 
     logic clk;
-    logic start;
+    bit start=1;
 
-    start=1;
     clk =0;
     always #5 clk = ~clk;
     

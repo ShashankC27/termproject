@@ -1,64 +1,6 @@
 `timescale 1ns/1ps
 `default_nettype none
 
-module top_tb;
-    fp_inf i_intf();
-    
-    test t1(i_intf);
-
-    top_dut dut(.a(i_intf.a),.b(i_intf.b),.opcode(i_intf.opcode),.c(i_intf.c));
-
-    initial begin
-        $vcdpluson;
-        $vcdplusmemon;
-    end
-endmodule
-
-program test(fp_inf i_intf);
-    environment env;
-
-    initial begin
-        env = new(i_intf);
-        env.run();
-    end
-endprogram
-
-class environment;
-
-    generator gen;
-    driver drv;
-    monitor mon;
-    scoreboard scb;
-
-    mailbox m1;
-    mailbox m2;
-
-    virtual fp_inf vif;
-
-    function new(virtual fp_inf vif);
-        this.vif=vif;
-        m1 = new();
-        m2 = new();
-        gen = new(m1);
-        driv = new(vif.m1);
-        mon = new(vif.m2);
-        scb = new(m2);
-    endfunction
-
-    task test();
-        gen.main();
-        driv.main();
-        mon.main();
-        scb.main();
-    endtask
-
-    task run;
-        test();
-        $finsih;
-    endtask
-
-endclass
-
 class transaction;
     rand [31:0] reg a;
     rand [31:0] reg b;
@@ -162,3 +104,60 @@ class scoreboard;
         end
     endtask
 endclass
+
+class environment;
+    generator gen;
+    driver drv;
+    monitor mon;
+    scoreboard scb;
+
+    mailbox m1;
+    mailbox m2;
+
+    virtual fp_inf vif;
+
+    function new(virtual fp_inf vif);
+        this.vif=vif;
+        m1 = new();
+        m2 = new();
+        gen = new(m1);
+        driv = new(vif.m1);
+        mon = new(vif.m2);
+        scb = new(m2);
+    endfunction
+
+    task test();
+        gen.main();
+        driv.main();
+        mon.main();
+        scb.main();
+    endtask
+
+    task run;
+        test();
+        $finsih;
+    endtask
+endclass
+
+program test(fp_inf i_intf);
+    environment env;
+
+    initial begin
+        env = new(i_intf);
+        env.run();
+    end
+endprogram
+
+module top_tb;
+    fp_inf i_intf();
+    
+    test t1(i_intf);
+
+    top_dut dut(.a(i_intf.a),.b(i_intf.b),.opcode(i_intf.opcode),.c(i_intf.c));
+
+    initial begin
+        $vcdpluson;
+        $vcdplusmemon;
+    end
+endmodule
+

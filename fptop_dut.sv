@@ -41,12 +41,12 @@ module fptop_dut(
 
 
 	always @ (posedge clk) begin
-       $display("in the loop %d %d",a,b);
+       $display("in the loop %d %d %d",a,b,opcode);
         if (1) begin
            // $display("in the loop %d",opcode);
             case (opcode)
                 Add: begin
-                   //$display("Value for add is a_sign =%b b_sign =%b  and output is %b",a_sig,b_sig,c_adder);
+                   $display("Value for add is a_sign =%b b_sign =%b  and output is %b",a_sig,b_sig,c_adder);
                     c <= c_adder;
                 end
                 Mul: begin

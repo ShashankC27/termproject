@@ -90,7 +90,7 @@ class scoreboard;
     endfunction
     
     real ar,br,cr;
-    fp_inf i_intf;
+    virtual fp_inf i_intf;
 
     task main();
         transaction trans;

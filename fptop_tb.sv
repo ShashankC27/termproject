@@ -10,7 +10,7 @@ class transaction;
     opcode = 2'd0;
 
 
-    function void display(string name)
+    function void display(string name);
         $display("------------------------");
         $display(" %s and values of a and b are %d %d",name,a,b);
         $display("%d value of opcode %d value of c",opcode,c);

@@ -27,6 +27,8 @@ class generator;
         this.gen_driv =gen_driv;
     endfunction
 
+    virtual fp_inf vif;
+    
     real ar;
     real br;
     task main();
@@ -36,10 +38,6 @@ class generator;
             trans.opcode=2'b00;
             trans.display("Generator Block");
             gen_driv.put(trans);
-
-            
-
-            virtual fp_inf vif;
 
             vif.conv_fixed(a,ar);
             vif.conv_fixed(a,ar);

@@ -31,7 +31,7 @@ class generator;
     endfunction
 
     task main();
-        repeat (1) begin
+        repeat (10) begin
             trans = new();
             trans.randomize();
             trans.opcode=2'b00;
@@ -51,7 +51,7 @@ class driver;
     endfunction
 
     task main();
-        repeat(1) begin
+        repeat(10) begin
             transaction trans;
             gen_driv.get(trans);
             vif.a = trans.a;
@@ -72,7 +72,7 @@ class monitor;
     endfunction
 
     task main();
-        repeat(1) begin
+        repeat(10) begin
             transaction trans;
             trans = new();
             trans.a=vif.a;
@@ -202,7 +202,7 @@ class scoreboard;
 
     task main();
         transaction trans;
-        repeat(1) begin
+        repeat(10) begin
             mon_sb.get(trans);
             trans.display("scoreboard");
 

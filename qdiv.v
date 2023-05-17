@@ -19,7 +19,7 @@ module qdiv(
   reg [5:0] bit1; 
 	reg done;
  
-	initial done = 1;
+	//initial done = 1;
  
 	assign quotient_out = quotient;
 	assign complete = done;

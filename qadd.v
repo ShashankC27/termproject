@@ -2,11 +2,14 @@
 module qadd(
     input [31:0] a,
     input [31:0] b,
-    output [31:0] c
+    output [31:0] c,
+	output complete
     );
 
 //sign+16.15
 //Parameterized values
+
+reg done=0;
 
 parameter Q = 15;
 parameter N = 32;
@@ -14,7 +17,8 @@ parameter N = 32;
 reg [N-1:0] res;
  
 assign c = res;
- 
+assign complete=done;
+
 always @(a,b)
 begin
 	//both negative
@@ -51,6 +55,7 @@ begin
 		//whole
 		res[N-2:0] = b[N-2:0] - a[N-2:0];
 	end
+	done=1;
 end
  
 endmodule

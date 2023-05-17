@@ -3,8 +3,11 @@
 module qmult(
     input [31:0] a,
     input [31:0] b,
-  output [63:0] c
+  	output [63:0] c,
+  	output complete
     );
+
+	reg done=0;
 
 	//Parameterized values
 	parameter Q = 15;
@@ -19,7 +22,8 @@ module qmult(
 	reg [2*N-1:0] result;
  	reg [2*N-1:0] retVal;
  
- 
+	assign complete=done;
+	
 	qtwosComp comp_a (a[30:0], a_ext);
  
 	qtwosComp comp_b (b[30:0], b_ext);
@@ -51,7 +55,7 @@ module qmult(
 	always @(result,r_ext)
 	begin		
 		//sign
-      if((a[N-1] == 1 && b[N-1] == 0) || (a[N-1] == 0 && b[N-1] == 1)) begin
+      	if((a[N-1] == 1 && b[N-1] == 0) || (a[N-1] == 0 && b[N-1] == 1)) begin
           retVal[2*N-1] = 1;
 			retVal[2*N-2:0] <= r_ext[2*N-2:0];
 		end
@@ -59,6 +63,7 @@ module qmult(
 			retVal[2*N-1] = 0;
           retVal[2*N-2:0] = result[2*N-2:0];//result[2*N-2+2*Q:2*Q];
 		end
+		done=1;
       //$display("value of retval %b",retVal);
     end
  

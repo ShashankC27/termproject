@@ -4,11 +4,17 @@
 class transaction;
     rand bit [31:0] a;
     rand bit [31:0] b;
-    reg [1:0] opcode;
+    rand bit [1:0] opcode;
     bit [31:0] c;
+    reg done_flag;
 
     //opcode = 2'b00;
 
+    virtual function void randomize();
+        a = $random;
+        b = $random;
+        opcode = $urandom_range(0, 2);
+    endfunction
 
     function void display(string name);
         $display("------------------------");
@@ -21,7 +27,7 @@ endclass
 class generator;
     transaction trans;
     mailbox gen_driv;
-    
+
     function new (mailbox gen_driv);
         this.gen_driv =gen_driv;
     endfunction
@@ -53,7 +59,6 @@ class driver;
             vif.a = trans.a;
             vif.b = trans.b;
             vif.opcode=trans.opcode;
-            #100;
             trans.display("Driver Block");
         end
     endtask
@@ -74,6 +79,7 @@ class monitor;
             trans = new();
             trans.a=vif.a;
             trans.b=vif.b;
+            ->vif.done_flag=1;
             trans.c=vif.c;
             trans.opcode=vif.opcode; 
 
@@ -155,10 +161,8 @@ class scoreboard;
 	     end
     endtask
 
-/*
-	*	Task to convert from fixed point to rational
-*/
-//logic,real
+
+    //logic,real
     task conv_fixed;
 	    input [N-1:0] fixed;
 	    output real num;
@@ -194,7 +198,7 @@ class scoreboard;
 
     task main();
         transaction trans;
-        repeat(1) begin
+        repeat() begin
             mon_sb.get(trans);
             trans.display("scoreboard");
 
@@ -217,8 +221,6 @@ class scoreboard;
             end
         end
     endtask
-
-
 
 endclass
 
@@ -247,7 +249,6 @@ class environment;
         //fork
         gen.main();
         driv.main();
-        #50;
         mon.main();
         scb.main();
         //join
@@ -280,7 +281,7 @@ module top_tb;
     
     test t1(i_intf);
 
-    fptop_dut dut(.a(i_intf.a),.b(i_intf.b),.clk(clk),.start(start),.opcode(i_intf.opcode),.c(i_intf.c));
+    fptop_dut dut(.a(i_intf.a),.b(i_intf.b),.clk(clk),.start(start),.opcode(i_intf.opcode),.c(i_intf.c),.done_flag(i_intf.done_flag));
     //top_dut dut(i_intf.slave);
 
     initial begin

@@ -26,7 +26,8 @@ module qdiv(
  
 	always @( posedge clk ) 
 	begin
-		if( done && start ) begin
+		if(start ) begin
+		//if( done && start ) begin
 			$display("In design div");
 			done <= 1'b0;
 			bit1 <= N+Q-2;

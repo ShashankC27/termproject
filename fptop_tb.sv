@@ -78,10 +78,10 @@ class monitor;
 
     task main();
         //repeat(10)
-
+        $display("Here in the monitor");
         forever begin
             #5;
-            $display("Here in the monirot");
+            
             trans = new();
             trans.a=vif.a;
             trans.b=vif.b;
@@ -210,10 +210,10 @@ class scoreboard;
     endtask
 
     task main();
-        
+        $display("here in the scoreboard");
         //repeat(10)
         forever begin
-        $display("here in the scoreboard");
+        
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);
             trans.display("scoreboard");

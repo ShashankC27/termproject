@@ -53,8 +53,9 @@ class driver;
     task main();
         //repeat(10)
         forever begin
-        if(gen_driv.try_peek(trans)) begin
             transaction trans;
+        if(gen_driv.try_peek(trans)) begin
+            
             gen_driv.get(trans);
             vif.a = trans.a;
             vif.b = trans.b;
@@ -205,9 +206,10 @@ class scoreboard;
     endtask
 
     task main();
-        transaction trans;
+        
         //repeat(10)
         forever begin
+            transaction trans;
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);
             trans.display("scoreboard");

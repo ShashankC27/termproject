@@ -69,6 +69,7 @@ endclass
 class monitor;
     virtual fp_inf vif;
     mailbox mon_sb;
+    transaction trans;
 
     function new (virtual fp_inf vif,mailbox mon_sb);
         this.vif =vif;
@@ -79,7 +80,7 @@ class monitor;
         //repeat(10)
         forever begin
             #5;
-            transaction trans;
+            
             trans = new();
             trans.a=vif.a;
             trans.b=vif.b;
@@ -101,6 +102,7 @@ endclass
 
 class scoreboard;
     mailbox mon_sb;
+    transaction trans;
 
     function new(mailbox mon_sb);
         this.mon_sb =mon_sb;
@@ -210,7 +212,6 @@ class scoreboard;
         
         //repeat(10)
         forever begin
-            transaction trans;
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);
             trans.display("scoreboard");

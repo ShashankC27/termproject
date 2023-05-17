@@ -199,7 +199,7 @@ class scoreboard;
 
             conv_rational(trans.a,ar);
             conv_rational(trans.b,br);
-            conv_rational(tarns.c,cr);
+            conv_rational(trans.c,cr);
             if((ar+br) == cr) begin
                 $display("**********************************");
                 $display("Correct output have been received.");

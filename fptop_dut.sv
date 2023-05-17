@@ -23,7 +23,7 @@ module fptop_dut(
 	wire [31:0] result;
     wire [31:0] c_adder;
     //wire [31:0] c_multiplier;
-    //wire [31:0] c_divider;
+    wire [31:0] c_divider;
  
 	//qadd #(23, 32) adder(a, b, c_adder);
     //qmult #(23, 32) multiplier(a, b, c_multiplier);

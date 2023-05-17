@@ -291,6 +291,7 @@ module top_tb;
     initial begin
         $vcdpluson;
         $vcdplusmemon;
+        $randomize;
         #10000;
         $finish;
     end

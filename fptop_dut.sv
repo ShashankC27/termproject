@@ -37,7 +37,7 @@ module fptop_dut(
 
     qadd adder(.a(a_sig),.b(b_sig),.c(c_adder),.done_flag(done_flag));
     //qmult multiplier(.a(a_sig),.b(b_sig),.c(c_multiplier));
-    //qdiv divider(.dividend(a_sig),.divisor(b_sig),.start(start),.clk(clk),.quotient_out(c_divider),.complete(flag_done));
+    qdiv divider(.dividend(a_sig),.divisor(b_sig),.start(start),.clk(clk),.quotient_out(c_divider),.complete(flag_done));
 	
 
 
@@ -55,8 +55,8 @@ module fptop_dut(
                     //c <= c_multiplier;
                 end
                 Div: begin
-                    //c <= c_divider;
-                    //$display("Value for DIv is a_sign =%b b_sign =%b  and output is %b",a_sig,b_sig,c_divider);
+                    c <= c_divider;
+                    $display("Value for DIv is a_sign =%b b_sign =%b  and output is %b",a_sig,b_sig,c_divider);
                 end
             endcase
         end

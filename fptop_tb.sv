@@ -264,7 +264,7 @@ class environment;
         driv.main();
         mon.main();
         scb.main();
-        join 
+        join_any
     endtask
 
     task run;

@@ -75,6 +75,7 @@ class monitor;
             trans.a=vif.a;
             trans.b=vif.b;
             trans.c=vif.c;
+            trans.opcode=vif.opcode;
 
             mon_sb.put(trans);
             trans.display("Monitor Block");

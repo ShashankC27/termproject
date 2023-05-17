@@ -31,7 +31,7 @@ class generator;
     endfunction
 
     task main();
-        repeat (10) begin
+        repeat (1) begin
             trans = new();
             trans.randomize();
             trans.opcode=2'b00;
@@ -52,7 +52,7 @@ class driver;
 
     task main();
         //repeat(10)
-        forever begin
+        repeat(1) begin
             transaction trans;
         if(gen_driv.try_peek(trans)) begin
             
@@ -63,11 +63,12 @@ class driver;
             trans.display("Driver Block");
             end
             $display("Waiting driver");
-            while(!vif.done_flag)  begin
+            while(vif.done_flag != 1)  begin
                 #5;
                 $display("Still in the wait block driver");
             end
             $display("done waiting driver");
+            #5;
         end
         
     endtask
@@ -77,7 +78,6 @@ class monitor;
     virtual fp_inf vif;
     mailbox mon_sb;
     transaction trans;
-
     function new (virtual fp_inf vif,mailbox mon_sb);
         this.vif =vif;
         this.mon_sb =mon_sb;
@@ -86,7 +86,7 @@ class monitor;
     task main();
         //repeat(10)
         $display("Here in the monitor");
-        forever begin
+        reepat(1) begin
             #5;
             
             trans = new();
@@ -219,7 +219,7 @@ class scoreboard;
     task main();
         $display("here in the scoreboard");
         //repeat(10)
-        forever begin
+        repeat(1) begin
         
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);

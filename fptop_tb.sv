@@ -206,14 +206,14 @@ class scoreboard;
                 $display("Correct output have been received.");
                 $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
                 $display(" a = %f, b = %f and c = %f",ar,br,cr);
-
-
+                $display("ourput = %f and expected = %f",(ar+br),cr);
             end
             else begin
                 $display("**********************************");
                 $display("Incorrect output have been generated");
                 $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
                 $display(" a = %f, b = %f and c = %f",ar,br,cr);
+                $display("ourput = %f and expected = %f",(ar+br),cr);
             end
         end
     endtask

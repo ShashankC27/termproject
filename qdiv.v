@@ -16,10 +16,10 @@ module qdiv(
 	reg [N-1:0] dividend_copy;
 	reg [2*(N-1)-1:0] divider_copy;
  
-  reg [5:0] bit1; 
+  	reg [5:0] bit1; 
 	reg done;
  
-	//initial done = 1;
+	initial done = 1;
  
 	assign quotient_out = quotient;
 	assign complete = done;
@@ -27,7 +27,7 @@ module qdiv(
 	always @( posedge clk ) 
 	begin
 		if( done && start ) begin
- 
+			$display("In design div");
 			done <= 1'b0;
 			bit1 <= N+Q-2;
 			quotient <= 0;
@@ -44,6 +44,7 @@ module qdiv(
 				quotient[N-1] <= 0;
 		end 
 		else if(!done) begin
+			$display("In design div2");
 			//compare divisor/dividend
 			if(dividend_copy >= divider_copy) begin
 				//subtract

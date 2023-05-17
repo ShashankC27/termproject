@@ -33,7 +33,6 @@ module fptop_dut(
     assign b_sig = b;
 
     reg flag_done;
-    reg start=1;
 
     qadd adder(.a(a_sig),.b(b_sig),.c(c_adder),.done_flag(done_flag));
     //qmult multiplier(.a(a_sig),.b(b_sig),.c(c_multiplier));

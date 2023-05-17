@@ -212,6 +212,7 @@ class scoreboard;
                 $display("**********************************");
                 $display("Incorrect output have been generated");
                 $display(" a = %d, b = %d and c = %c",trans.a,trans.b,trans.c);
+                $display(" a = %f, b = %f and c = %f",ar,br,cr);
             end
         end
     endtask

@@ -52,7 +52,7 @@ class driver;
 
     task main();
         //repeat(10)
-        if(gen_driv.try_peek()) begin
+        if(gen_driv.try_peek) begin
             transaction trans;
             gen_driv.get(trans);
             vif.a = trans.a;
@@ -205,7 +205,7 @@ class scoreboard;
     task main();
         transaction trans;
         //repeat(10)
-        if(mon_sb.try_peek()) begin
+        if(mon_sb.try_peek) begin
             mon_sb.get(trans);
             trans.display("scoreboard");
 

@@ -34,7 +34,6 @@ class generator;
         repeat (1) begin
             trans = new();
             trans.randomize();
-            trans.opcode=2'b10;
             trans.display("Generator Block");
             gen_driv.put(trans);
         end
@@ -304,7 +303,9 @@ class environment;
     endtask
 
     task run;
+        repeat(10) begin
         test();
+        end
         //$finsih;
     endtask
 endclass

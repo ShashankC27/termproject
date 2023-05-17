@@ -196,7 +196,7 @@ class scoreboard;
 
     task main();
         transaction trans;
-        repeat() begin
+        repeat(1) begin
             mon_sb.get(trans);
             trans.display("scoreboard");
 

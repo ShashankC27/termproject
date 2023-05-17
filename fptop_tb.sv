@@ -51,7 +51,8 @@ class driver;
     endfunction
 
     task main();
-        repeat(10) begin
+        //repeat(10)
+        if(gen_driv.try_peek()) begin
             transaction trans;
             gen_driv.get(trans);
             vif.a = trans.a;
@@ -72,7 +73,8 @@ class monitor;
     endfunction
 
     task main();
-        repeat(10) begin
+        //repeat(10)
+        if(gen_driv.try_peek()) begin
             transaction trans;
             trans = new();
             trans.a=vif.a;
@@ -202,7 +204,8 @@ class scoreboard;
 
     task main();
         transaction trans;
-        repeat(10) begin
+        //repeat(10)
+        if(gen_driv.try_peek()) begin
             mon_sb.get(trans);
             trans.display("scoreboard");
 
@@ -255,7 +258,7 @@ class environment;
         driv.main();
         mon.main();
         scb.main();
-        join
+        join 
     endtask
 
     task run;

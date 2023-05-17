@@ -52,7 +52,7 @@ class driver;
 
     task main();
         //repeat(10)
-        forever begin
+        repeat(1) begin
             transaction trans;
         if(gen_driv.try_peek(trans)) begin
             
@@ -80,7 +80,7 @@ class monitor;
     task main();
         //repeat(10)
         $display("Here in the monitor");
-        forever begin
+        repeat(1) begin
             #5;
             
             trans = new();
@@ -213,7 +213,7 @@ class scoreboard;
     task main();
         $display("here in the scoreboard");
         //repeat(10)
-        forever begin
+        repeat(1) begin
         
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);

@@ -13,7 +13,7 @@ class transaction;
    constraint opcode_constraint {
         opcode inside {[0:2]};
     }
-    
+
     function void display(string name);
         $display("------------------------");
         $display(" %s and values of a and b are %d %d",name,a,b);
@@ -77,7 +77,7 @@ class monitor;
             trans = new();
             trans.a=vif.a;
             trans.b=vif.b;
-            ->vif.done_flag=1;
+            ->vif.done_flag;
             trans.c=vif.c;
             trans.opcode=vif.opcode; 
 

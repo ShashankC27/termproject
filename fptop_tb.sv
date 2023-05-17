@@ -228,20 +228,45 @@ class scoreboard;
             conv_fixed(trans.a,ar);
             conv_fixed(trans.b,br);
             conv_fixed(trans.c,cr);
-            if((ar+br) == cr) begin
-                $display("**********************************");
-                $display("Correct output have been received.");
-                $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
-                $display(" a = %f, b = %f and c = %f",ar,br,cr);
-                $display("ourput = %f and expected = %f",(ar+br),cr);
-            end
-            else begin
-                $display("**********************************");
-                $display("Incorrect output have been generated");
-                $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
-                $display(" a = %f, b = %f and c = %f",ar,br,cr);
-                $display("ourput = %f and expected = %f",(ar+br),cr);
-            end
+
+            case (trans.opcode)
+                2'b00: begin
+                if((ar+br) == cr) begin
+                    $display("**********************************");
+                    $display("Correct output have been received for mul.");
+                    $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
+                    $display(" a = %f, b = %f and c = %f",ar,br,cr);
+                    $display("ourput = %f and expected = %f",(ar+br),cr);
+                end
+                else begin
+                    $display("**********************************");
+                    $display("Incorrect output have been generated for mul");
+                    $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
+                    $display(" a = %f, b = %f and c = %f",ar,br,cr);
+                    $display("ourput = %f and expected = %f",(ar+br),cr);
+                end
+                end
+                2'b01: begin
+                    
+                end
+                2'b10: begin
+                    if((ar/br) == cr) begin
+                    $display("**********************************");
+                    $display("Correct output have been received for div.");
+                    $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
+                    $display(" a = %f, b = %f and c = %f",ar,br,cr);
+                    $display("ourput = %f and expected = %f",(ar/br),cr);
+                end
+                else begin
+                    $display("**********************************");
+                    $display("Incorrect output have been generated for div");
+                    $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
+                    $display(" a = %f, b = %f and c = %f",ar,br,cr);
+                    $display("ourput = %f and expected = %f",(ar/br),cr);
+                end
+                end
+            endcase
+            
         end
         end
     endtask

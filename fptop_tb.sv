@@ -75,7 +75,7 @@ class monitor;
             trans.a=vif.a;
             trans.b=vif.b;
             trans.c=vif.c;
-            trans.opcode=vif.opcode;
+            trans.opcode=vif.opcode; 
 
             mon_sb.put(trans);
             trans.display("Monitor Block");
@@ -198,9 +198,9 @@ class scoreboard;
             mon_sb.get(trans);
             trans.display("scoreboard");
 
-            conv_rational(trans.a,ar);
-            conv_rational(trans.b,br);
-            conv_rational(trans.c,cr);
+            conv_fixed(trans.a,ar);
+            conv_fixed(trans.b,br);
+            conv_fixed(trans.c,cr);
             if((ar+br) == cr) begin
                 $display("**********************************");
                 $display("Correct output have been received.");

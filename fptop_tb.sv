@@ -52,7 +52,7 @@ class driver;
 
     task main();
         //repeat(10)
-        repeat(1) begin
+        forever begin
             transaction trans;
         if(gen_driv.try_peek(trans)) begin
             
@@ -62,8 +62,14 @@ class driver;
             vif.opcode=trans.opcode;
             trans.display("Driver Block");
             end
+            $display("Waiting driver");
+            while(!vif.done_flag)  begin
+                #5;
+                $display("Still in the wait block driver");
+            end
+            $display("done waiting driver");
         end
-        #5;
+        
     endtask
 endclass
 
@@ -80,7 +86,7 @@ class monitor;
     task main();
         //repeat(10)
         $display("Here in the monitor");
-        repeat(1) begin
+        forever begin
             #5;
             
             trans = new();
@@ -213,7 +219,7 @@ class scoreboard;
     task main();
         $display("here in the scoreboard");
         //repeat(10)
-        repeat(1) begin
+        forever begin
         
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);

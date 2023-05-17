@@ -52,13 +52,15 @@ class driver;
 
     task main();
         //repeat(10)
-        if(gen_driv.try_peek) begin
+        forever begin
+        if(gen_driv.try_peek(trans)) begin
             transaction trans;
             gen_driv.get(trans);
             vif.a = trans.a;
             vif.b = trans.b;
             vif.opcode=trans.opcode;
             trans.display("Driver Block");
+            end
         end
     endtask
 endclass
@@ -205,7 +207,8 @@ class scoreboard;
     task main();
         transaction trans;
         //repeat(10)
-        if(mon_sb.try_peek) begin
+        forever begin
+        if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);
             trans.display("scoreboard");
 
@@ -226,6 +229,7 @@ class scoreboard;
                 $display(" a = %f, b = %f and c = %f",ar,br,cr);
                 $display("ourput = %f and expected = %f",(ar+br),cr);
             end
+        end
         end
     endtask
 

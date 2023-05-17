@@ -5,6 +5,7 @@ module fptop_dut(
     input [31:0] a,
     input [31:0] b,
     output reg [31:0] c,
+    output reg done_flag;
 	input clk,
 	input start,
 	input [1:0] opcode
@@ -34,7 +35,7 @@ module fptop_dut(
     reg flag_done;
 
 
-    qadd adder(.a(a_sig),.b(b_sig),.c(c_adder));
+    qadd adder(.a(a_sig),.b(b_sig),.c(c_adder),.done_flag(done_flag));
     //qmult multiplier(.a(a_sig),.b(b_sig),.c(c_multiplier));
     //qdiv divider(.dividend(a_sig),.divisor(b_sig),.start(start),.clk(clk),.quotient_out(c_divider),.complete(flag_done));
 	

@@ -92,6 +92,8 @@ class scoreboard;
     real ar,br,cr;
     virtual fp_inf i_intf;
 
+    parameter Q = 15;
+    parameter N = 32;
 
     task conv_rational;
 	    input real num;

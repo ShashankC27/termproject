@@ -86,7 +86,7 @@ class monitor;
     task main();
         //repeat(10)
         $display("Here in the monitor");
-        reepat(1) begin
+        repeat(1) begin
             #5;
             
             trans = new();

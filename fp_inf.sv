@@ -5,7 +5,8 @@ interface fp_inf(input bit clk);
     logic [1:0] opcode;
     logic [31:0] c;
     logic start=1;
-	logic done_flag
+	logic done_flag;
+	
     modport slave (input a, b, opcode, start, output c , done_flag );
 
 parameter Q = 15;

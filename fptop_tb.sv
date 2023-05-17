@@ -74,7 +74,7 @@ class monitor;
 
     task main();
         //repeat(10)
-        if(gen_driv.try_peek()) begin
+        forever begin
             transaction trans;
             trans = new();
             trans.a=vif.a;
@@ -205,7 +205,7 @@ class scoreboard;
     task main();
         transaction trans;
         //repeat(10)
-        if(gen_driv.try_peek()) begin
+        if(mon_sb.try_peek()) begin
             mon_sb.get(trans);
             trans.display("scoreboard");
 

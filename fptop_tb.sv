@@ -78,6 +78,7 @@ class monitor;
     task main();
         //repeat(10)
         forever begin
+            #5;
             transaction trans;
             trans = new();
             trans.a=vif.a;

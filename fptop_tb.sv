@@ -63,6 +63,7 @@ class driver;
             trans.display("Driver Block");
             end
         end
+        #5;
     endtask
 endclass
 

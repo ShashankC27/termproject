@@ -78,12 +78,10 @@ class monitor;
             trans.a=vif.a;
             trans.b=vif.b;
             //->vif.done_flag;
-            always @(done_flag) begin
-                if (done_flag) begin
-                // Wait until done_flag is set to 1
-                wait(done_flag);
-                // Fetch the value of c (dataout)
-                end
+            while(!done_flag)  begin
+                #5;
+                $display("Still in the wait block");
+
             end
             trans.c=vif.c;
             trans.opcode=vif.opcode; 

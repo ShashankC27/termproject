@@ -3,7 +3,7 @@ module qadd(
     input [31:0] a,
     input [31:0] b,
     output [31:0] c,
-	output complete
+	output done_flag
     );
 
 //sign+16.15
@@ -17,7 +17,7 @@ parameter N = 32;
 reg [N-1:0] res;
  
 assign c = res;
-assign complete=done;
+assign done_flag=done;
 
 always @(a,b)
 begin

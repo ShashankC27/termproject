@@ -5,7 +5,7 @@ module fptop_dut(
     input [31:0] a,
     input [31:0] b,
     output reg [31:0] c,
-    output reg done_flag;
+    output reg done_flag,
 	input clk,
 	input start,
 	input [1:0] opcode

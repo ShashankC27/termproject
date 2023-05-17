@@ -78,7 +78,7 @@ class monitor;
             trans.a=vif.a;
             trans.b=vif.b;
             //->vif.done_flag;
-            while(!done_flag)  begin
+            while(!vif.done_flag)  begin
                 #5;
                 $display("Still in the wait block");
 

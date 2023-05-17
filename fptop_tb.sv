@@ -10,12 +10,10 @@ class transaction;
 
     //opcode = 2'b00;
 
-    virtual function void randomize();
-        a = $random;
-        b = $random;
-        opcode = $urandom_range(0, 2);
-    endfunction
-
+   constraint opcode_constraint {
+        opcode inside {[0:2]};
+    }
+    
     function void display(string name);
         $display("------------------------");
         $display(" %s and values of a and b are %d %d",name,a,b);

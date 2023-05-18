@@ -233,14 +233,14 @@ class scoreboard;
                 2'b00: begin
                 if((ar+br) == cr) begin
                     $display("**********************************");
-                    $display("Correct output have been received for mul.");
+			$display("Correct output have been received for add.");
                     $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
                     $display(" a = %f, b = %f and c = %f",ar,br,cr);
                     $display("ourput = %f and expected = %f",(ar+br),cr);
                 end
                 else begin
                     $display("**********************************");
-                    $display("Incorrect output have been generated for mul");
+			$display("Incorrect output have been generated for add");
                     $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
                     $display(" a = %f, b = %f and c = %f",ar,br,cr);
                     $display("ourput = %f and expected = %f",(ar+br),cr);

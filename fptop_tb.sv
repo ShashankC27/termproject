@@ -25,7 +25,7 @@ endclass
 class generator;
     transaction trans;
     mailbox gen_driv;
-    integer number_of_transcation=10;
+    integer number_of_transcation=5;
 
     function new (mailbox gen_driv);
         this.gen_driv =gen_driv;
@@ -223,8 +223,8 @@ class scoreboard;
     task main();
         $display("here in the scoreboard");
         //repeat(10)
-        repeat(1) begin
-        
+        repeat(10) begin
+        #5;
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);
             trans.display("scoreboard");

@@ -12,6 +12,9 @@ interface fp_inf(input bit clk);
 parameter Q = 15;
 parameter N = 32;
 
+	clocking cbclk @(posedge clk);
+   endclocking
+
 //real,logic
 task conv_rational;
 	input real num;

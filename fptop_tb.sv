@@ -90,7 +90,7 @@ class monitor;
     task main();
         //repeat(10)
 
-        repeat(1) begin
+        repeat(10) begin
             //#5;
         @(vif.cbclk)begin
             

@@ -30,7 +30,7 @@ transaction trans;
         mb1=mb;
         while(mb1.peek(trans)) begin
             mb1.get(trans);
-            $display("a = %d b = %d opcode= %d c = %d",trans.a,trans.b,trans.opcode,trans.c)
+            $display("a = %d b = %d opcode= %d c = %d",trans.a,trans.b,trans.opcode,trans.c);
         end
 
     endfunction //new()

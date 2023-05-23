@@ -53,7 +53,8 @@ class generator;
            // trans.display("Generator Block");
             gen_driv.put(trans);
         end
-        print print1 = new(gen_driv);
+        print print1 ;
+        print1= new(gen_driv);
     endtask
 endclass
 

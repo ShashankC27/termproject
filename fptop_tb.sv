@@ -51,7 +51,7 @@ class driver;
         this.gen_driv=gen_driv;
     endfunction
 
-    task main();
+    function main();
         //repeat(10)
         //forever 
        always @() begin
@@ -73,7 +73,7 @@ class driver;
             #5;
         end
         
-    endtask
+    endfunction
 endclass
 
 class monitor;

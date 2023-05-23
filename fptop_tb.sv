@@ -23,7 +23,7 @@ class transaction;
     endfunction
 endclass
 
-class print;
+class printmailbox;
 mailbox mb1;
 transaction trans;
     function new(mailbox mb);
@@ -53,7 +53,7 @@ class generator;
            // trans.display("Generator Block");
             gen_driv.put(trans);
         end
-        print print1 ;
+        printmailbox print1;
         print1= new(gen_driv);
     endtask
 endclass

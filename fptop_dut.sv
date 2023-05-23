@@ -44,7 +44,7 @@ module fptop_dut(
 
 
 	always @ (posedge clk) begin
-       $display("in the loop %d %d %d",a,b,opcode);
+       //$display("in the loop %d %d %d",a,b,opcode);
         if (1) begin
            // $display("in the loop %d",opcode);
             case (opcode)

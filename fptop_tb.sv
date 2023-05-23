@@ -51,7 +51,7 @@ class generator;
             trans = new();
             trans.randomize();
             trans.opcode=2'b00;
-           // trans.display("Generator Block");
+           trans.display("Generator Block");
             gen_driv.put(trans);
         end
         
@@ -81,7 +81,7 @@ class driver;
             vif.a = trans.a;
             vif.b = trans.b;
             vif.opcode=trans.opcode;
-           // trans.display("Driver Block");
+            trans.display("Driver Block");
             end
             $display("Waiting driver");
             while(vif.done_flag != 1)  begin
@@ -126,7 +126,7 @@ class monitor;
             trans.opcode=vif.opcode; 
 
             mon_sb.put(trans);
-          //  trans.display("Monitor Block");
+            trans.display("Monitor Block");
         end
         end
         print = new();
@@ -250,7 +250,7 @@ class scoreboard;
         #5;
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);
-          //  trans.display("scoreboard");
+           trans.display("scoreboard");
 
             conv_fixed(trans.a,ar);
             conv_fixed(trans.b,br);

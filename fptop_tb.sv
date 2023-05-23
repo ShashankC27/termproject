@@ -63,7 +63,7 @@ endclass
 class driver;
     virtual fp_inf vif;
     mailbox gen_driv;
-
+    printmailbox print;
     function new(virtual fp_inf vif,mailbox gen_driv);
         this.vif=vif;
         this.gen_driv=gen_driv;
@@ -92,7 +92,8 @@ class driver;
             #5;
         end
         end
-        
+        print = new();
+        print.printmb(gen_driv);
     endtask
 endclass
 
@@ -100,6 +101,7 @@ class monitor;
     virtual fp_inf vif;
     mailbox mon_sb;
     transaction trans;
+    printmailbox print;
     function new (virtual fp_inf vif,mailbox mon_sb);
         this.vif =vif;
         this.mon_sb =mon_sb;
@@ -127,12 +129,15 @@ class monitor;
           //  trans.display("Monitor Block");
         end
         end
+        print = new();
+        print.printmb(mon_sb);
     endtask
 endclass
 
 class scoreboard;
     mailbox mon_sb;
     transaction trans;
+    printmailbox print;
 
     function new(mailbox mon_sb);
         this.mon_sb =mon_sb;
@@ -274,6 +279,8 @@ class scoreboard;
             end
         end
         end
+        print = new();
+        print.printmb(mon_sb);
     endtask
 
 endclass

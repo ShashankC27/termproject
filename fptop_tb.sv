@@ -40,7 +40,7 @@ class generator;
     transaction trans;
     mailbox gen_driv;
     integer number_of_transcation=5;
-
+    printmailbox print;
     function new (mailbox gen_driv);
         this.gen_driv =gen_driv;
     endfunction
@@ -53,8 +53,8 @@ class generator;
            // trans.display("Generator Block");
             gen_driv.put(trans);
         end
-        printmailbox print1;
-        print1= new(gen_driv);
+        
+        print = new(gen_driv);
     endtask
 endclass
 

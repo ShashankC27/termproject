@@ -25,16 +25,17 @@ endclass
 class generator;
     transaction trans;
     mailbox gen_driv;
+    integer number_of_transcation=10;
 
     function new (mailbox gen_driv);
         this.gen_driv =gen_driv;
     endfunction
 
     task main();
-        repeat (1) begin
+        repeat (number_of_transcation) begin
             trans = new();
             trans.randomize();
-            trans.opcode=2'b00;
+            //trans.opcode=2'b10;
             trans.display("Generator Block");
             gen_driv.put(trans);
         end
@@ -52,7 +53,8 @@ class driver;
 
     task main();
         //repeat(10)
-        repeat(1) begin
+        //forever 
+        @always(vif.cbclk)begin
             transaction trans;
         if(gen_driv.try_peek(trans)) begin
             
@@ -85,9 +87,10 @@ class monitor;
 
     task main();
         //repeat(10)
-        $display("Here in the monitor");
-        repeat(1) begin
-            #5;
+
+        //repeat(1) begin
+            //#5;
+        @always(vif.cbclk)begin
             
             trans = new();
             trans.a=vif.a;
@@ -96,9 +99,7 @@ class monitor;
             $display("Waiting");
             while(!vif.done_flag)  begin
                 #5;
-                $display("Still in the wait block");
             end
-            $display("done waiting");
             trans.c=vif.c;
             trans.opcode=vif.opcode; 
 
@@ -116,7 +117,7 @@ class scoreboard;
         this.mon_sb =mon_sb;
     endfunction
     
-    real ar,br,cr;
+    real ar,br,cr,er;
     virtual fp_inf i_intf;
 
     parameter Q = 15;
@@ -231,42 +232,25 @@ class scoreboard;
 
             case (trans.opcode)
                 2'b00: begin
-                if((ar+br) == cr) begin
-                    $display("**********************************");
-			$display("Correct output have been received for add.");
-                    $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
-                    $display(" a = %f, b = %f and c = %f",ar,br,cr);
-                    $display("ourput = %f and expected = %f",(ar+br),cr);
-                end
-                else begin
-                    $display("**********************************");
-			$display("Incorrect output have been generated for add");
-                    $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
-                    $display(" a = %f, b = %f and c = %f",ar,br,cr);
-                    $display("ourput = %f and expected = %f",(ar+br),cr);
-                end
+                    er=ar+br;
                 end
                 2'b01: begin
-                    
+                    er=ar*br;
                 end
                 2'b10: begin
-                    if((ar/br) == cr) begin
-                    $display("**********************************");
-                    $display("Correct output have been received for div.");
-                    $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
-                    $display(" a = %f, b = %f and c = %f",ar,br,cr);
-                    $display("ourput = %f and expected = %f",cr,(ar/br));
-                end
-                else begin
-                    $display("**********************************");
-                    $display("Incorrect output have been generated for div");
-                    $display(" a = %b, b = %b and c = %b",trans.a,trans.b,trans.c);
-                    $display(" a = %f, b = %f and c = %f",ar,br,cr);
-                    $display("ourput = %f and expected = %f",cr,(ar/br));
-                end
+                    er=ar/br;
                 end
             endcase
-            
+            if(er != cr) begin
+                $display("Error : Output is not equal to input")
+                $display("Values are A = %f B=%f and opcode=%b",ar,br,opcode);
+                $display("Actual Value = %f and Expected Value = %f",cr,er);
+            end
+            else begin
+                $display("Output is equal to input")
+                $display("Values are A = %f B=%f and opcode=%b",ar,br,opcode);
+                $display("Actual Value = %f and Expected Value = %f",cr,er);
+            end
         end
         end
     endtask
@@ -304,9 +288,7 @@ class environment;
     endtask
 
     task run;
-        repeat(10) begin
         test();
-        end
         //$finsih;
     endtask
 endclass

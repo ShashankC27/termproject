@@ -18,7 +18,10 @@ module fptop_dut(
 	// Inputs
 	reg [31:0] a_sig;
 	reg [31:0] b_sig;
- 
+    
+    reg done_flag_add;
+    reg done_flag_div;
+    reg done_flag_mult;
 	//temporary Outputs
 	wire [31:0] result;
     wire [31:0] c_adder;
@@ -32,11 +35,11 @@ module fptop_dut(
     assign a_sig = a;
     assign b_sig = b;
 
-    reg flag_done;
+    //reg flag_done;
 
-    qadd adder(.a(a_sig),.b(b_sig),.c(c_adder),.done_flag(done_flag));
+    qadd adder(.a(a_sig),.b(b_sig),.c(c_adder),.done_flag(done_flag_add));
     //qmult multiplier(.a(a_sig),.b(b_sig),.c(c_multiplier));
-    qdiv divider(.dividend(a_sig),.divisor(b_sig),.start(start),.clk(clk),.quotient_out(c_divider),.complete(flag_done));
+    qdiv divider(.dividend(a_sig),.divisor(b_sig),.start(start),.clk(clk),.quotient_out(c_divider),.complete(done_flag_mult));
 	
 
 
@@ -48,13 +51,16 @@ module fptop_dut(
                 Add: begin
                    $display("Value for add is a_sign =%d b_sign =%d  and output is %d",a_sig,b_sig,c_adder);
                     c = c_adder;
+                    done_flag=done_flag_add
                 end
                 Mul: begin
                     //$display("Value for Mul is a_sign =%b b_sign =%b  and output is %b",a_sig,b_sig,c_multiplier);
                     //c <= c_multiplier;
+                    //done_flag=done_flag_div;
                 end
                 Div: begin
                     c <= c_divider;
+                    done_flag=done_flag_mult
                     $display("Value for DIv is a_sign =%b b_sign =%b  and output is %b",a_sig,b_sig,c_divider);
                 end
             endcase

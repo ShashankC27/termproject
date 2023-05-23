@@ -52,9 +52,10 @@ class driver;
     endfunction
 
     function main();
-        //repeat(10)
+        repeat(10) begin
         //forever 
-       always @() begin
+       //always @() begin
+        @(vif.cbclk) begin
             transaction trans;
         if(gen_driv.try_peek(trans)) begin
             
@@ -72,6 +73,7 @@ class driver;
             $display("done waiting driver");
             #5;
         end
+        end
         
     endfunction
 endclass
@@ -88,9 +90,9 @@ class monitor;
     task main();
         //repeat(10)
 
-        //repeat(1) begin
+        repeat(1) begin
             //#5;
-       always @(vif.cbclk)begin
+        @(vif.cbclk)begin
             
             trans = new();
             trans.a=vif.a;
@@ -105,6 +107,7 @@ class monitor;
 
             mon_sb.put(trans);
             trans.display("Monitor Block");
+        end
         end
     endtask
 endclass

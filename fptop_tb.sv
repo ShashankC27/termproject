@@ -246,12 +246,12 @@ class scoreboard;
             endcase
             if(er != cr) begin
                 $display("Error : Output is not equal to input");
-                $display("Values are A = %f B=%f and opcode=%b",ar,br,opcode);
+                $display("Values are A = %f B=%f and opcode=%b",ar,br,trans.opcode);
                 $display("Actual Value = %f and Expected Value = %f",cr,er);
             end
             else begin
                 $display("Output is equal to input");
-                $display("Values are A = %f B=%f and opcode=%b",ar,br,opcode);
+                $display("Values are A = %f B=%f and opcode=%b",ar,br,trans.opcode);
                 $display("Actual Value = %f and Expected Value = %f",cr,er);
             end
         end

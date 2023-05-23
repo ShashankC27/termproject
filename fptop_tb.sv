@@ -29,6 +29,7 @@ transaction trans;
     function new(mailbox mb);
         mb1=mb;
         while(mb1.try_peek(trans)) begin
+            #5
             mb1.get(trans);
             $display("a = %d b = %d opcode= %d c = %d",trans.a,trans.b,trans.opcode,trans.c);
         end

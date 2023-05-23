@@ -1,7 +1,6 @@
 `timescale 1ns/1ps
 `default_nettype none
 
-
 class transaction;
     rand bit [31:0] a;
     rand bit [31:0] b;
@@ -23,25 +22,11 @@ class transaction;
     endfunction
 endclass
 
-class printmailbox;
-mailbox mb1;
-transaction trans;
-    task automatic printmb(mailbox mb);
-        mb1=mb;
-        while(mb1.try_peek(trans)) begin
-            #5
-            mb1.get(trans);
-            #5;
-            $display("a = %d b = %d opcode= %d c = %d",trans.a,trans.b,trans.opcode,trans.c);
-        end
-    endtask //automatic
-endclass //className
-
 class generator;
     transaction trans;
     mailbox gen_driv;
     integer number_of_transcation=5;
-    printmailbox print;
+
     function new (mailbox gen_driv);
         this.gen_driv =gen_driv;
     endfunction
@@ -51,19 +36,16 @@ class generator;
             trans = new();
             trans.randomize();
             trans.opcode=2'b00;
-           trans.display("Generator Block");
+            trans.display("Generator Block");
             gen_driv.put(trans);
         end
-        
-        print = new();
-        print.printmb(gen_driv);
     endtask
 endclass
 
 class driver;
     virtual fp_inf vif;
     mailbox gen_driv;
-    printmailbox print;
+
     function new(virtual fp_inf vif,mailbox gen_driv);
         this.vif=vif;
         this.gen_driv=gen_driv;
@@ -92,8 +74,7 @@ class driver;
             #5;
         end
         end
-        print = new();
-        print.printmb(gen_driv);
+        
     endtask
 endclass
 
@@ -101,7 +82,6 @@ class monitor;
     virtual fp_inf vif;
     mailbox mon_sb;
     transaction trans;
-    printmailbox print;
     function new (virtual fp_inf vif,mailbox mon_sb);
         this.vif =vif;
         this.mon_sb =mon_sb;
@@ -129,15 +109,12 @@ class monitor;
             trans.display("Monitor Block");
         end
         end
-        print = new();
-        print.printmb(mon_sb);
     endtask
 endclass
 
 class scoreboard;
     mailbox mon_sb;
     transaction trans;
-    printmailbox print;
 
     function new(mailbox mon_sb);
         this.mon_sb =mon_sb;
@@ -250,7 +227,7 @@ class scoreboard;
         #5;
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);
-           trans.display("scoreboard");
+            trans.display("scoreboard");
 
             conv_fixed(trans.a,ar);
             conv_fixed(trans.b,br);
@@ -279,8 +256,6 @@ class scoreboard;
             end
         end
         end
-        print = new();
-        print.printmb(mon_sb);
     endtask
 
 endclass

@@ -54,7 +54,7 @@ class driver;
     task main();
         //repeat(10)
         //forever 
-       always @(vif.cbclk) begin
+       always @() begin
             transaction trans;
         if(gen_driv.try_peek(trans)) begin
             

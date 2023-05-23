@@ -1,6 +1,7 @@
 `timescale 1ns/1ps
 `default_nettype none
 
+
 class transaction;
     rand bit [31:0] a;
     rand bit [31:0] b;
@@ -22,6 +23,19 @@ class transaction;
     endfunction
 endclass
 
+class print;
+mailbox mb1;
+transaction trans;
+    function new(mailbox mb);
+        mb1=mb;
+        while(mb1.peek(trans)) begin
+            mb1.get(trans);
+            $display("a = %d b = %d opcode= %d c = %d",trans.a,trans.b,trans.opcode,trans.c)
+        end
+
+    endfunction //new()
+endclass //className
+
 class generator;
     transaction trans;
     mailbox gen_driv;
@@ -36,9 +50,10 @@ class generator;
             trans = new();
             trans.randomize();
             trans.opcode=2'b00;
-            trans.display("Generator Block");
+           // trans.display("Generator Block");
             gen_driv.put(trans);
         end
+        print print1 = new(gen_driv);
     endtask
 endclass
 
@@ -63,7 +78,7 @@ class driver;
             vif.a = trans.a;
             vif.b = trans.b;
             vif.opcode=trans.opcode;
-            trans.display("Driver Block");
+           // trans.display("Driver Block");
             end
             $display("Waiting driver");
             while(vif.done_flag != 1)  begin
@@ -106,7 +121,7 @@ class monitor;
             trans.opcode=vif.opcode; 
 
             mon_sb.put(trans);
-            trans.display("Monitor Block");
+          //  trans.display("Monitor Block");
         end
         end
     endtask
@@ -227,7 +242,7 @@ class scoreboard;
         #5;
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);
-            trans.display("scoreboard");
+          //  trans.display("scoreboard");
 
             conv_fixed(trans.a,ar);
             conv_fixed(trans.b,br);

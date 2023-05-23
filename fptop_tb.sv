@@ -25,7 +25,7 @@ endclass
 class generator;
     transaction trans;
     mailbox gen_driv;
-    integer number_of_transcation=5;
+    integer number_of_transcation=1;
 
     function new (mailbox gen_driv);
         this.gen_driv =gen_driv;

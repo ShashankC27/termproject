@@ -54,7 +54,7 @@ class driver;
     task main();
         //repeat(10)
         //forever 
-        @always(vif.cbclk)begin
+       always @(vif.cbclk)begin
             transaction trans;
         if(gen_driv.try_peek(trans)) begin
             
@@ -90,7 +90,7 @@ class monitor;
 
         //repeat(1) begin
             //#5;
-        @always(vif.cbclk)begin
+       always @(vif.cbclk)begin
             
             trans = new();
             trans.a=vif.a;

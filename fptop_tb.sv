@@ -26,16 +26,15 @@ endclass
 class printmailbox;
 mailbox mb1;
 transaction trans;
-    function new(mailbox mb);
+    task automatic printmb(mailbox mb);
         mb1=mb;
         while(mb1.try_peek(trans)) begin
-            #5;
+            #5
             mb1.get(trans);
             #5;
             $display("a = %d b = %d opcode= %d c = %d",trans.a,trans.b,trans.opcode,trans.c);
         end
-
-    endfunction //new()
+    endtask //automatic
 endclass //className
 
 class generator;
@@ -56,7 +55,8 @@ class generator;
             gen_driv.put(trans);
         end
         
-        print = new(gen_driv);
+        print = new();
+        print.printmb(gen_driv);
     endtask
 endclass
 

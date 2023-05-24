@@ -74,7 +74,7 @@ class driver;
             $display("done waiting driver");
             
         end
-        10;
+        #10;
         end
         
     endtask
@@ -112,7 +112,7 @@ class monitor;
             trans.display("Monitor Block");
            
         end
-        10;
+        #10;
         end
     endtask
 endclass

@@ -29,7 +29,7 @@ module qdiv(
 		//if(start) begin
 		if( done && start ) begin
 			$display("In design div");
-			done <= 1'b0;
+			done = 1'b0;
 			bit1 <= N+Q-2;
 			quotient <= 0;
 			dividend_copy <= {1'b0,dividend[N-2:0]};

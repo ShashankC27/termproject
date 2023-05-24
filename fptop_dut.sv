@@ -56,11 +56,11 @@ module fptop_dut(
                 Mul: begin
                     //$display("Value for Mul is a_sign =%b b_sign =%b  and output is %b",a_sig,b_sig,c_multiplier);
                     //c <= c_multiplier;
-                    //done_flag=done_flag_div;
+                    //done_flag=done_flag_mult;
                 end
                 Div: begin
                     c <= c_divider;
-                    done_flag=done_flag_mult;
+                    done_flag=done_flag_div;
                     $display("Value for DIv is a_sign =%b b_sign =%b  and output is %b",a_sig,b_sig,c_divider);
                 end
             endcase

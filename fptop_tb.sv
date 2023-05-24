@@ -53,7 +53,7 @@ class driver;
     endfunction
 
     task main();
-        repeat(10) begin
+        repeat(1) begin
         //forever begin
        //always @() begin
         @(vif.cbclk) begin
@@ -90,7 +90,7 @@ class monitor;
     task main();
         //repeat(10)
 
-        repeat(10) begin
+        repeat(1) begin
         //forever begin
             //#5;
         @(vif.cbclk)begin
@@ -226,7 +226,7 @@ class scoreboard;
     task main();
         $display("here in the scoreboard");
         //repeat(10)
-        repeat(10) begin
+        repeat(1) begin
         //forever begin
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);

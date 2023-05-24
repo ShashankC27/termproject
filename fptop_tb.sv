@@ -287,12 +287,12 @@ class environment;
     endfunction
 
     task test();
-        fork
+        //fork
         gen.main();
         driv.main();
         mon.main();
         scb.main();
-        join_any
+        //join_any
     endtask
 
     task run;

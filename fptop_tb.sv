@@ -38,6 +38,7 @@ class generator;
             trans.opcode=2'b00;
             trans.display("Generator Block");
             gen_driv.put(trans);
+            #10;
         end
     endtask
 endclass
@@ -52,8 +53,8 @@ class driver;
     endfunction
 
     task main();
-        repeat(10) begin
-        //forever 
+        //repeat(10) begin
+        forever begin
        //always @() begin
         @(vif.cbclk) begin
             transaction trans;
@@ -71,8 +72,9 @@ class driver;
                 $display("Still in the wait block driver");
             end
             $display("done waiting driver");
-            #5;
+            
         end
+        10;
         end
         
     endtask
@@ -90,7 +92,8 @@ class monitor;
     task main();
         //repeat(10)
 
-        repeat(10) begin
+        //repeat(10) begin
+        forever begin
             //#5;
         @(vif.cbclk)begin
             
@@ -107,7 +110,9 @@ class monitor;
 
             mon_sb.put(trans);
             trans.display("Monitor Block");
+           
         end
+        10;
         end
     endtask
 endclass
@@ -223,8 +228,8 @@ class scoreboard;
     task main();
         $display("here in the scoreboard");
         //repeat(10)
-        repeat(10) begin
-        #5;
+        //repeat(10) begin
+        forever begin
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);
             trans.display("scoreboard");
@@ -255,7 +260,9 @@ class scoreboard;
                 $display("Actual Value = %f and Expected Value = %f",cr,er);
             end
         end
+         #10;
         end
+       
     endtask
 
 endclass

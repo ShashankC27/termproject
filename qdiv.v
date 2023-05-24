@@ -22,7 +22,7 @@ module qdiv(
 	initial done = 1;
  
 	assign quotient_out = quotient;
-	assign complete = done;
+	//assign complete = done;
  
 	always @( posedge clk ) 
 	begin
@@ -59,9 +59,10 @@ module qdiv(
 			divider_copy <= divider_copy >> 1;
  
 			//stop condition
-          if(bit1 == 0)
+          if(bit1 == 0) begin
 				done <= 1'b1;
- 
+				complete=1;
+		  end
 			//reduce bit counter
 			bit1 <= bit1 - 1;	
 		end

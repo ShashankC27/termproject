@@ -28,7 +28,7 @@ module qdiv(
 	begin
 		if(start ) begin
 		//if( done && start ) begin
-			//$display("In design div");
+			$display("In design div");
 			done <= 1'b0;
 			bit1 <= N+Q-2;
 			quotient <= 0;

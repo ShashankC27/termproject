@@ -61,7 +61,7 @@ module qdiv(
 			//stop condition
           if(bit1 == 0) begin
 				done <= 1'b1;
-				complete=1;
+				complete=1'b1;
 		  end
 			//reduce bit counter
 			bit1 <= bit1 - 1;	

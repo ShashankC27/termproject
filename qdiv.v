@@ -45,7 +45,7 @@ module qdiv(
 				quotient[N-1] <= 0;
 		end 
 		else if(!done) begin
-			while(!done) begin
+			//while(!done) begin
 			$display("In design div2");
 			//compare divisor/dividend
 			if(dividend_copy >= divider_copy) begin
@@ -65,6 +65,6 @@ module qdiv(
 			//reduce bit counter
 			bit1 <= bit1 - 1;	
 		end
-		end
+		//end
 	end
 endmodule

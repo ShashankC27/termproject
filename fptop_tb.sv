@@ -53,8 +53,8 @@ class driver;
     endfunction
 
     task main();
-        //repeat(10) begin
-        forever begin
+        repeat(10) begin
+        //forever begin
        //always @() begin
         @(vif.cbclk) begin
             transaction trans;
@@ -66,12 +66,10 @@ class driver;
             vif.opcode=trans.opcode;
             trans.display("Driver Block");
             end
-            $display("Waiting driver");
             while(vif.done_flag != 1)  begin
                 #5;
                 $display("Still in the wait block driver");
             end
-            $display("done waiting driver");
             
         end
         #10;
@@ -92,8 +90,8 @@ class monitor;
     task main();
         //repeat(10)
 
-        //repeat(10) begin
-        forever begin
+        repeat(10) begin
+        //forever begin
             //#5;
         @(vif.cbclk)begin
             
@@ -228,8 +226,8 @@ class scoreboard;
     task main();
         $display("here in the scoreboard");
         //repeat(10)
-        //repeat(10) begin
-        forever begin
+        repeat(10) begin
+        //forever begin
         if(mon_sb.try_peek(trans)) begin
             mon_sb.get(trans);
             trans.display("scoreboard");
@@ -289,12 +287,12 @@ class environment;
     endfunction
 
     task test();
-        //fork
+        fork
         gen.main();
         driv.main();
         mon.main();
         scb.main();
-        //join_any
+        join_any
     endtask
 
     task run;

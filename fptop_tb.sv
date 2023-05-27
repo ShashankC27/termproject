@@ -35,7 +35,7 @@ class generator;
         repeat (number_of_transcation) begin
             trans = new();
             trans.randomize();
-            trans.opcode=2'b10;
+            trans.opcode=2'b00;
             trans.display("Generator Block");
             gen_driv.put(trans);
             #10;
